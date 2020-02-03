@@ -42,11 +42,15 @@ item.insertMany(items,function(err){
   }
 });
 
+
 app.get("/", function(req, res) {
-
-
-
-  res.render("list", {listTitle: "Today", newListItems: items});
+  item.find(function(err,results){
+    if(err){
+      console.log(err);
+    }else{
+        res.render("list", {listTitle: "Today", newListItems: results});
+    }
+  });
 
 });
 
